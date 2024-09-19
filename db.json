@@ -1,0 +1,86 @@
+{
+  "tasks": [
+    {
+      "id": "2d8a",
+      "title": "json-server",
+      "status": false
+    },
+    {
+      "id": "5ca4",
+      "title": "react-js",
+      "status": false
+    },
+    {
+      "id": "a540",
+      "title": "node-js",
+      "status": false
+    },
+    {
+      "id": "af39",
+      "title": "sass",
+      "status": false
+    },
+    {
+      "id": "1aac",
+      "title": "slack",
+      "status": false
+    },
+    {
+      "id": "c292",
+      "title": "email",
+      "status": false
+    },
+    {
+      "id": "c6c2",
+      "title": "zoom",
+      "status": false
+    },
+    {
+      "id": "376f",
+      "title": "task",
+      "status": false
+    },
+    {
+      "id": "2192",
+      "title": "react-ts",
+      "status": false
+    },
+    {
+      "id": "b8f3",
+      "title": "working freelancer",
+      "status": false
+    }
+  ],
+  "users": [
+    {
+      "id": "66d1",
+      "name": "Pooja",
+      "email": "pooja@gmail.com",
+      "password": "pooja@gmail.com"
+    },
+    {
+      "id": "9689",
+      "name": "Sunil",
+      "email": "sunil@gmail.com",
+      "password": "sunil@123"
+    },
+    {
+      "id": "f024",
+      "name": "Surendra",
+      "email": "surendra@gmail.com",
+      "password": "surendra@123"
+    },
+    {
+      "id": "77f8",
+      "name": "Raj",
+      "email": "raj@gmail.com",
+      "password": "raj@123"
+    },
+    {
+      "id": "70a8",
+      "name": "Naresh",
+      "email": "naresh@gmail.com",
+      "password": "naresh@123"
+    }
+  ]
+}

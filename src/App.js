@@ -1,24 +1,41 @@
-import logo from './logo.svg';
+import { Route, BrowserRouter as Router, Routes, Navigate } from 'react-router-dom';
 import './App.css';
-
+import Register from './components/Register';
+import Login from './components/Login';
+import LogoIcon from './components/logo';
+import Navbar from './components/Navbar';
+// import TaskInput from './components/TaskInput';
+// import TaskList from './components/TaskList';
+import { ChakraProvider } from '@chakra-ui/react'
+import ProtectedRoute from './ProtectedRoute';
+import Tasks from './components/Tasks';
+import Contact from './components/Contact';
+import About from './components/About';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+      <Router>
+      <div>
+        <LogoIcon/>
+        <Navbar/>           
+      </div>
+      <div style={{color:'white',position:'absolute',display:'flex',flexDirection:'column',justifyContent:'space-evenly',width:'100%',alignItems:'center',top:'80px'}}>
+        <Routes>
+          <Route path="/" element={<Navigate to="/deshboard"/>}></Route>
+          <Route path="/register" element={<Register/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/contact/" element={<Contact/>}/>
+          <Route path="/about/" element={<About/>}/>
+          <Route  path="/dashboard" element={<ProtectedRoute><Tasks/></ProtectedRoute>}/>
+        </Routes>
+      </div>
+      </Router>      
+      {/* <div style={{color:'white',position:'absolute',display:'flex',flexDirection:'column',justifyContent:'space-evenly',width:'100%',alignItems:'center',top:'80px'}}>
+      <Register/>
+      <Login/>
+      <Tasks/>
+      </div>       */}
+      </ChakraProvider>
   );
 }
 
