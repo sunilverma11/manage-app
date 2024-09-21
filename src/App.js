@@ -19,9 +19,10 @@ function App() {
         <LogoIcon/>
         <Navbar/>           
       </div>
-      <div style={{color:'white',position:'absolute',display:'flex',flexDirection:'column',justifyContent:'space-evenly',width:'100%',alignItems:'center',top:'80px'}}>
+      <div style={{color:"white",position:'absolute',display:'flex',flexDirection:'column',
+        justifyContent:'space-evenly',width:'100%',alignItems:'center',top:'80px'}}>
         <Routes>
-          <Route path="/" element={<Navigate to="/deshboard"/>}></Route>
+          <Route path="/" element={<Navigate to="/dashboard"/>}></Route>
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/contact/" element={<Contact/>}/>

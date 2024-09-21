@@ -15,10 +15,9 @@ function EditModal(props) {
         try {
             console.log("in request")
             dispatch(todoRequestAction())
-            await axios.get(`${ApiUrl}/task/${localStorage.getItem("_id")}`).then((res)=>{
+            await axios.get(`${ApiUrl}/task/${localStorage.getItem("_id")}`,{headers:{authorization:localStorage.getItem("token")}}).then((res)=>{
                 console.log("in get")
                 // setTasks(res.data)
-
                 dispatch(getTodoSuccessAction(res.data))
             })
         } 
@@ -34,7 +33,7 @@ function EditModal(props) {
         try {
             console.log("in updt",status)
             dispatch(todoRequestAction({}))
-            await axios.patch(`${ApiUrl}/task/${update._id}`,{status,title}).then((res)=>{
+            await axios.patch(`${ApiUrl}/task/${update._id}`,{status,title},{headers:{authorization:localStorage.getItem("token")}}).then((res)=>{
                 console.log("in status change",res.data)
                 // dispatch(updateTodoSuccessAction())
                 getTasks()

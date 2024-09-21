@@ -2,7 +2,7 @@ import { Stack, Text } from "@chakra-ui/react"
 const About = ()=>{
 
     return(<Stack align="center">        
-        <Text mw="50%">Hi, I'm sunil verma. Aspiring full-stack developer with a 
+        <Text mw="50%" p="10px">Hi, I'm sunil verma. Aspiring full-stack developer with a 
             specialization in Problem-Solving. Self-motivated and curious 
             to learn new technologies, along with a keen interest in building 
             user-friendly products. I specialize in creating responsive and 

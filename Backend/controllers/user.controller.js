@@ -2,7 +2,8 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 
 const userModel = require('../models/user.model');
-const {hashingPassword, comparePassword} = require('../middleware/hashpassword')
+const {hashingPassword, comparePassword} = require('../middleware/hashpassword');
+const { generateToken } = require('../middleware/authentication');
 const router = express.Router();
 
 router.post("/register",hashingPassword, async (req, res) => {
@@ -26,7 +27,7 @@ router.get("/users", async (req, res) => {
       return res.status(404).send(error.message);
     }
 });
-router.post("/login",comparePassword,  async (req, res) => {
+router.post("/login",comparePassword,generateToken,  async (req, res) => {
     try {
         if(req.body.error){
             return res.send("login error");
@@ -34,7 +35,7 @@ router.post("/login",comparePassword,  async (req, res) => {
         if(!req.body.status || req.body.userNotExist){
             return res.send("invalid credentials");
         }
-      return res.status(201).send(req.body.user);
+      return res.status(201).send({...req.body.user,token:req.body.token});
     } catch (error) {
       return res.status(404).send(error.message);
     }

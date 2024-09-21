@@ -1,10 +1,11 @@
 const express = require("express");
 
 const task = require("../models/task.model" );
+const { verifyToken } = require("../middleware/authentication");
 
 const router = express.Router();
 //reusable in future
-router.post("/task", async (req, res) => {
+router.post("/task", verifyToken, async (req, res) => {
   try {
     console.log("item post body",req.body)
     const item = await task.create(req.body);
@@ -14,20 +15,20 @@ router.post("/task", async (req, res) => {
     return res.status(404).send(error.message);
   }
 });
-router.post("/task/:userid", async (req, res) => {
-  try {
-    const {title}= req.body
-    let date = new Date();
-    date = date.getFullYear() +"-"+date.getMonth()+"-"+date.getDate();
-    const userid = req.params.userid;
-    const item = await task.create({title,date,userid});
-    return res.status(201).send(item);
-  } catch (error) {
-    return res.status(404).send(error.message);
-  }
-});
+// router.post("/task/:userid", async (req, res) => {
+//   try {
+//     const {title}= req.body
+//     let date = new Date();
+//     date = date.getFullYear() +"-"+date.getMonth()+"-"+date.getDate();
+//     const userid = req.params.userid;
+//     const item = await task.create({title,date,userid});
+//     return res.status(201).send(item);
+//   } catch (error) {
+//     return res.status(404).send(error.message);
+//   }
+// });
 
-router.get("/task/:userid", async (req, res) => {
+router.get("/task/:userid",verifyToken, async (req, res) => {
   try {
     const userid= req.params.userid
     const item = await task.find({userid}).lean().exec();
@@ -47,15 +48,15 @@ router.get("/task/:userid", async (req, res) => {
 //     return res.status(404).send(error.message);
 //   }
 // });
-router.get("/task/:id", async (req, res) => {
-  try {
-    const item = await task.findById(req.params.id);
+// router.get("/task/:id", async (req, res) => {
+//   try {
+//     const item = await task.findById(req.params.id);
 
-    return res.status(201).send(item);
-  } catch (error) {
-    return res.status(404).send(error.message);
-  }
-});
+//     return res.status(201).send(item);
+//   } catch (error) {
+//     return res.status(404).send(error.message);
+//   }
+// });
 //reusable in future
 // router.delete("/task", async (req, res) => {
 //   try {
@@ -66,7 +67,7 @@ router.get("/task/:id", async (req, res) => {
 //     return res.status(404).send(error.message);
 //   }
 // });
-router.delete("/task/:id", async (req, res) => {
+router.delete("/task/:id",verifyToken, async (req, res) => {
   try {
     const item = await task.findByIdAndRemove(req.params.id);
     return res.status(201).send(item);
@@ -74,7 +75,7 @@ router.delete("/task/:id", async (req, res) => {
     return res.status(404).send(error.message);
   }
 });
-router.patch("/task/:id", async (req, res) => {
+router.patch("/task/:id",verifyToken, async (req, res) => {
   try {
     await task.findByIdAndUpdate(req.params.id, req.body);
     const item = await task.findOne({_id:req.params.id})

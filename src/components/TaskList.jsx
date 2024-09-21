@@ -27,7 +27,7 @@ const TaskList = (props)=>{
         try {
             console.log("in request")
             dispatch(todoRequestAction({}))
-            await axios.delete(`${ApiUrl}/task/${id}`).then((res)=>{
+            await axios.delete(`${ApiUrl}/task/${id}`,{headers:{authorization:localStorage.getItem("token")}}).then((res)=>{
                 console.log("in delete",res.data)
                 dispatch(deleteTodoSuccessAction(res.data))
             })
@@ -41,7 +41,7 @@ const TaskList = (props)=>{
         try {
             console.log("in updt",id,status)
             // dispatch(todoRequestAction({...tableRef}))
-            await axios.patch(`${ApiUrl}/task/${id}`,{status:status}).then((res)=>{
+            await axios.patch(`${ApiUrl}/task/${id}`,{status:status},{headers:{authorization:localStorage.getItem("token")}}).then((res)=>{
                 console.log("in status change",res.data.item)
                 dispatch(updateTodoSuccessAction(res.data.item))
             })
@@ -55,9 +55,11 @@ const TaskList = (props)=>{
         console.log("in useeffect for get")
         const getTasks=async()=>{
             try {
+                let token = localStorage.getItem("token");
+                if(token===undefined || token===null || token === "") return;
                 console.log("in request")
                 dispatch(todoRequestAction())
-                await axios.get(`${ApiUrl}/task/${localStorage.getItem("_id")}`).then((res)=>{
+                await axios.get(`${ApiUrl}/task/${localStorage.getItem("_id")}`,{headers:{authorization:token}}).then((res)=>{
                     console.log("in get")
                     dispatch(getTodoSuccessAction(res.data))
                 })
@@ -71,26 +73,27 @@ const TaskList = (props)=>{
         getTasks()
     },[dispatch])
     
-    return <div style={{marginTop:'20px'}}>
+    return <div>
     {/* <h3>Tasks List</h3> */}
     <Heading noOfLines={1} size="md">Tasks List </Heading>
     {
     isLoading?"Loading":
     <div >
-        {todos?.length>0? <TableContainer style={{width:'700px',maxHeight:'350px',overflowY:'auto'}}>
+        {todos?.length>0? <TableContainer style={{width:'700px',maxHeight:'350px',overflowY:'auto',marginTop:'.5rem'}}>
             <Table size='sm'>
-                <Thead style={{position:'sticky',top:'0',fontWeight:'bolder',backgroundColor:'lightgray',color:'gray',zIndex:'1'}}>
+                <Thead style={{fontWeight:'bolder',backgroundColor:'black',zIndex:'1'}}>
+                {/* position:'sticky',top:'0', */}
                 <Tr>
                     <Th>Title</Th>
-                    <Th>status</Th>
-                    <Th>update/delete</Th>
+                    {/* <Th>status</Th> */}
+                    <Th>Update / Delete / Status</Th>
                 </Tr>
                 </Thead>
                 <Tbody>
                 {todos?.length>0?todos.map((element)=>
                         <Tr key={element._id}>
                         <Td style={{width:'60%'}}>{element.title}</Td>
-                        <Td>{element.status?" ✔️":" ❌"}</Td>
+                        {/* <Td>{element.status?" ✔️":" ❌"}</Td> */}
                         <Td>
                             <Stack spacing={4} direction='row' align='center' style={{textAlign:'right'}}>
                             <EditModal 
@@ -99,7 +102,7 @@ const TaskList = (props)=>{
                                 _id={element._id}
                                 />
                             <Button onClick={()=>deleteTask(element._id)} colorScheme='red' size='xs'>Delete</Button>
-                            <Button colorScheme='teal' size='xs' onClick={()=>updateStatus(element._id,!element.status)}>Done</Button>
+                            <Button colorScheme='teal' size='xs' onClick={()=>updateStatus(element._id,!element.status)}>{element.status?" ✔️":" ❌"}</Button>
                             </Stack>
                         </Td>
                         </Tr>
@@ -112,70 +115,4 @@ const TaskList = (props)=>{
     </div>}        
     </div>
 }
-export default TaskList
-/*
-import axios from "axios"
-import React, { useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { 
-    todoRequestAction,
-    todoFailureAction,
-    getTodoSuccessAction,
-    deleteTodoSuccessAction
-} from "../redux/action"
-
-const TodoList = ()=>{
-    const dispatch = useDispatch();
-    const {todos,isLoading,isError} = useSelector((store)=>{
-        return store
-    })
-    
-    const deleteTodo= async(id) =>{
-        console.log(id)
-        try {
-            console.log("in request")
-            dispatch(todoRequestAction())
-            await axios.delete("http://localhost:8080/todos/"+id).then((res)=>{
-                console.log("in get",res.data)
-                dispatch(deleteTodoSuccessAction(res.data))
-            })
-        } 
-        catch (error) {
-            console.log("in error")
-            dispatch(todoFailureAction())
-        }
-    }
-    useEffect(()=>{
-        const getTodos=async()=>{
-            try {
-                console.log("in request")
-                dispatch(todoRequestAction())
-                await axios.get("http://localhost:8080/todos").then((res)=>{
-                    console.log("in get")
-                    dispatch(getTodoSuccessAction(res.data))
-                })
-            } 
-            catch (error) {
-                console.log("in error")
-                dispatch(todoFailureAction())
-            }
-            
-        }
-        getTodos();
-    },[dispatch])
-
-
-    return <div>
-    TODO LIST
-    {isLoading?"Loading":<div>
-    {todos?.length>0?todos.map((el)=>
-    <div key={el.id}>
-        <p>{el.title}</p><b>{el.status?"done":"incomplete"}</b>
-        <button onClick={()=>deleteTodo(el.id)}>delete</button>
-    </div>):null}
-    </div>}        
-    </div>
-}
-
-export default TodoList;
-*/
+export default TaskList;

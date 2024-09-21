@@ -46,6 +46,7 @@ const Login = ()=>{
                     console.log("inside if")
                     localStorage.setItem("name",res.data.name);
                     localStorage.setItem("_id",res.data._id);
+                    localStorage.setItem("token",res.data.token)
                     navigate("/dashboard");
                     setForm({})
                 }else{
@@ -108,12 +109,12 @@ const Login = ()=>{
                     Register
                 </Link>
                 <br/>
-                <Link color='pink' onClick={()=>{
+                {/* <Link color='pink' onClick={()=>{
                     localStorage.setItem("name","Guest user")
                     localStorage.setItem("_id","12345")
                 }} href='/dashboard'>
                     Guset Login
-                </Link>
+                </Link> */}
             </Box>           
             
         </div>

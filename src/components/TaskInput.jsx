@@ -19,7 +19,10 @@ const TaskInput = ()=>{
         try {
             console.log("in request post")
             dispatch(todoRequestAction())
-            await axios.post(`${ApiUrl}/task`,{title:value,status:false,userid:localStorage.getItem("_id")}).then((res)=>{
+            await axios.post(`${ApiUrl}/task`,
+                {title:value,status:false,userid:localStorage.getItem("_id")},
+                {headers:{authorization:localStorage.getItem("token")}})
+                .then((res)=>{
                 console.log("in post",res.data)
                 dispatch(postTodoSuccessAction(res.data))
                 setValue("")
@@ -33,7 +36,7 @@ const TaskInput = ()=>{
     };
 
     return(
-        <div style={{margin:'auto',maxWidth:'350px',textAlign:'center',color:'white'}}>
+        <div style={{margin:'1rem auto',maxWidth:'350px',textAlign:'center',color:'white'}}>
                     <Heading noOfLines={1} size="md" style={{textAlign:'center'}}>Task Input</Heading>
         <form action="" onSubmit={postTodo} style={{padding:'10px 20px'}} >
         <input 
