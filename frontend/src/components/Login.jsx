@@ -36,9 +36,7 @@ const Login = ()=>{
     // }
     const handleLogin = async (e)=>{
         e.preventDefault();
-        console.log(form);
         try {
-            console.log("in request post")
             // dispatch(todoRequestAction())
             await axios.post(`${ApiUrl}/login`,form).then((res)=>{
                 console.log("in post",res.data);
@@ -50,18 +48,15 @@ const Login = ()=>{
                     navigate("/dashboard");
                     setForm({})
                 }else{
-                    console.log("inside else")
                 }                
                 // dispatch(postTodoSuccessAction(res.data))
                 
             })
         } 
         catch (error) {
-            console.log(error.message);
             window.alert(
             error.message
             );
-            console.log("in error")
             // dispatch(todoFailureAction())
         }        
    }
@@ -97,7 +92,6 @@ const Login = ()=>{
                     />
                     </FormControl>         
                     <Button      
-                            // onClick={handleLogin}              
                             type="submit" 
                             colorScheme="teal" 
                             size="md">

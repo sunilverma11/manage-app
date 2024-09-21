@@ -19,24 +19,18 @@ const Register = ()=>{
     // console.log(el.target.name,el.target.value)
     setForm({...form,[el.target.name]:el.target.value})
    }
-   const handleSubmit = async ()=>{
-        // console.log(form)
+   const handleSubmit = async (e)=>{
+        e.preventDefault();
         try {
-            console.log("in request post",ApiUrl)
             // dispatch(todoRequestAction())
             await axios.post(`${ApiUrl}/register`,form).then((res)=>{
-                console.log("in post")
                 // dispatch(postTodoSuccessAction(res.data))
                 // setForm({})
             })
         } 
         catch (error) {
-            console.log("in error")
             // dispatch(todoFailureAction())
         }
-        
-    
-        console.log(form)
    }
    
     return(

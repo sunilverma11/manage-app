@@ -15,21 +15,17 @@ const TaskInput = ()=>{
     const dispatch = useDispatch();
     const postTodo=async(e)=>{
         e.preventDefault();
-        console.log(value)
         try {
-            console.log("in request post")
             dispatch(todoRequestAction())
             await axios.post(`${ApiUrl}/task`,
                 {title:value,status:false,userid:localStorage.getItem("_id")},
                 {headers:{authorization:localStorage.getItem("token")}})
                 .then((res)=>{
-                console.log("in post",res.data)
                 dispatch(postTodoSuccessAction(res.data))
                 setValue("")
             })
         }
         catch (error) {
-            console.log("in error")
             dispatch(todoFailureAction())
         }
         

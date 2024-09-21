@@ -17,55 +17,44 @@ const TaskList = (props)=>{
     // const tableRef = useRef(null);
     //todos,isLoading,isError,ref from redux store
     const {todos, isLoading} = useSelector((store)=>{
-        console.log("stote selector",store)
+        // console.log("stote selector",store)
         return store
     })
 
     
     const deleteTask= async(id) =>{
-        console.log(id)
         try {
-            console.log("in request")
             dispatch(todoRequestAction({}))
             await axios.delete(`${ApiUrl}/task/${id}`,{headers:{authorization:localStorage.getItem("token")}}).then((res)=>{
-                console.log("in delete",res.data)
                 dispatch(deleteTodoSuccessAction(res.data))
             })
         } 
         catch (error) {
-            console.log("in error")
             dispatch(todoFailureAction())
         }
     }
     const updateStatus = async(id,status)=>{
         try {
-            console.log("in updt",id,status)
             // dispatch(todoRequestAction({...tableRef}))
             await axios.patch(`${ApiUrl}/task/${id}`,{status:status},{headers:{authorization:localStorage.getItem("token")}}).then((res)=>{
-                console.log("in status change",res.data.item)
                 dispatch(updateTodoSuccessAction(res.data.item))
             })
         } 
         catch (error) {
-            console.log("in error")
             // dispatch(todoFailureAction())
         }
     }
     useEffect(()=>{
-        console.log("in useeffect for get")
         const getTasks=async()=>{
             try {
                 let token = localStorage.getItem("token");
                 if(token===undefined || token===null || token === "") return;
-                console.log("in request")
                 dispatch(todoRequestAction())
                 await axios.get(`${ApiUrl}/task/${localStorage.getItem("_id")}`,{headers:{authorization:token}}).then((res)=>{
-                    console.log("in get")
                     dispatch(getTodoSuccessAction(res.data))
                 })
             } 
             catch (error) {
-                console.log("in error")
                 dispatch(todoFailureAction())
             }
             
@@ -74,7 +63,6 @@ const TaskList = (props)=>{
     },[dispatch])
     
     return <div>
-    {/* <h3>Tasks List</h3> */}
     <Heading noOfLines={1} size="md">Tasks List </Heading>
     {
     isLoading?"Loading":

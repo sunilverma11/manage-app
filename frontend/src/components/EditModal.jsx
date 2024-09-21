@@ -16,38 +16,30 @@ function EditModal(props) {
             console.log("in request")
             dispatch(todoRequestAction())
             await axios.get(`${ApiUrl}/task/${localStorage.getItem("_id")}`,{headers:{authorization:localStorage.getItem("token")}}).then((res)=>{
-                console.log("in get")
-                // setTasks(res.data)
                 dispatch(getTodoSuccessAction(res.data))
             })
         } 
         catch (error) {
-            console.log("in error")
             dispatch(todoFailureAction())
         }
         
     }
     const updateTask = async ()=> {
-        console.log("hello edit",update)
         const {title,status} = update;
         try {
-            console.log("in updt",status)
             dispatch(todoRequestAction({}))
             await axios.patch(`${ApiUrl}/task/${update._id}`,{status,title},{headers:{authorization:localStorage.getItem("token")}}).then((res)=>{
-                console.log("in status change",res.data)
                 // dispatch(updateTodoSuccessAction())
                 getTasks()
             })
         } 
         catch (error) {
-            console.log("in error")
             dispatch(todoFailureAction())
         }
         
 
     }
     const changeValue = (key,value)=>{
-        console.log("val",value,typeof(value))
         if(key==="status") setUpdate({...update,[key]:Number(value)===1?true:false})
         else setUpdate({...update,[key]:value})
     }    
