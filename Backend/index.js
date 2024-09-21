@@ -5,8 +5,11 @@ const taskController = require("./controllers/task.controller")
 const userController = require("./controllers/user.controller")
 const app = express()
 const cors = require('cors');
+const viewurl = process.env.viewurl;
+
+
 const corsOptions ={
-    origin: 'http://localhost:3000', 
+    origin: viewurl, 
     // origin:'https://todos-api-react.netlify.app',
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
