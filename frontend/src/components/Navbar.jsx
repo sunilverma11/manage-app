@@ -16,6 +16,7 @@ const Navbar = ()=>{
             <Link onClick={()=>{
                 localStorage.removeItem("name")
                 localStorage.removeItem("_id")
+                localStorage.removeItem("token")
                 }} to="/login">Logout</Link>
           </Text>
         </Stack>
