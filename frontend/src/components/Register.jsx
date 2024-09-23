@@ -24,8 +24,8 @@ const Register = ()=>{
         try {
             // dispatch(todoRequestAction())
             await axios.post(`${ApiUrl}/register`,form).then((res)=>{
-                // dispatch(postTodoSuccessAction(res.data))
-                // setForm({})
+                // dispatch(postTodoSuccessAction(res.data))                
+                setForm({})
             })
         } 
         catch (error) {
