@@ -13,7 +13,7 @@ function EditModal(props) {
     const initialRef = useRef(null)
     const getTasks=async()=>{
         try {
-            console.log("in request")
+            // console.log("in request")
             dispatch(todoRequestAction())
             await axios.get(`${ApiUrl}/task/${localStorage.getItem("_id")}`,{headers:{authorization:localStorage.getItem("token")}}).then((res)=>{
                 dispatch(getTodoSuccessAction(res.data))

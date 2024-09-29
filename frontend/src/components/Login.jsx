@@ -16,48 +16,37 @@ import {
     // AlertIcon,
     // AlertTitle
   } from '@chakra-ui/react';
+import { todoFailureAction, todoRequestAction } from '../redux/action';
+import { useDispatch } from 'react-redux';
 
 const ApiUrl = process.env.REACT_APP_API_URL;
 
 const Login = ()=>{
     const [form,setForm] = useState({});
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const handleChange = (el)=>{
-        // console.log(el)
         setForm({...form,[el.target.name]:el.target.value});
-    }
-    // const AlertMessage = ()=>{
-    //     return(
-    //         <Alert status='error'>
-    //         <AlertIcon />
-    //         <AlertTitle>{"something wrong"}</AlertTitle>
-    //         </Alert>
-    //     )
-    // }
+    }    
     const handleLogin = async (e)=>{
         e.preventDefault();
         try {
-            // dispatch(todoRequestAction())
+            dispatch(todoRequestAction())
             await axios.post(`${ApiUrl}/login`,form).then((res)=>{
-                console.log("in post",res.data);
+                // console.log("in post",res.data);
                 if(res.data?.name){
-                    console.log("inside if")
                     localStorage.setItem("name",res.data.name);
                     localStorage.setItem("_id",res.data._id);
                     localStorage.setItem("token",res.data.token)
+                    setForm({});
+                    window.alert("Login Successfully");
                     navigate("/dashboard");
-                    setForm({})
-                }else{
-                }                
-                // dispatch(postTodoSuccessAction(res.data))
-                
+                }               
             })
         } 
-        catch (error) {
-            window.alert(
-            error.message
-            );
-            // dispatch(todoFailureAction())
+        catch (error){
+            window.alert(error.message);
+            dispatch(todoFailureAction())
         }        
    }
 

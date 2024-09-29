@@ -19,27 +19,3 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
-/*
-import {
-  ChakraBaseProvider,
-  extendBaseTheme,
-  theme as chakraTheme,
-} from '@chakra-ui/react'
-
-const { Button } = chakraTheme.components
-
-const theme = extendBaseTheme({
-  components: {
-    Button,
-  },
-})
-
-function App() {
-  return (
-    <ChakraBaseProvider theme={theme}>
-      <Component {...pageProps} />
-    </ChakraBaseProvider>
-  )
-}
-*/

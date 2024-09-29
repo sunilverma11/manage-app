@@ -4,6 +4,7 @@ const init={
     todos:[],
     ref:{},
     isLoading:false,
-    isError:false
+    isError:false,
+    isAuth:false
 }
 export const store= legacy_createStore(reducer, init);
