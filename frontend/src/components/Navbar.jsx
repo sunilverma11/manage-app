@@ -25,7 +25,7 @@ const Navbar = ()=>{
         width:'100%',color:'white',border:'1px solid gray',backgroundColor:'gray',
         padding:'10px 10px',textAlign:'center',zIndex:'1',alignItems:'center'}}>
           <Text style={{fontWeight:'bolder', color:'lightgreen'}}>Manage App</Text>
-          <Text style={{display:'flex', gap:'1rem',fontWeight:'bold'}}>
+          <Text style={{display:'flex', gap:'.75rem',fontWeight:'bold'}}>
             <Link to="/about">About</Link>
             <Link to="/contact">Contact</Link>
           {!statusTab?<><Link to="/login">Login</Link>
