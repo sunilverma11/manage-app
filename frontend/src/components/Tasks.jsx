@@ -13,7 +13,7 @@ const Tasks = ()=>{
     })
     return(
         <div className="task-container">
-            <Heading style={{display:'flex'}} noOfLines={1} size="md">Hey, {localStorage.getItem("name")}! <img width={"30px"} src={heartgif}/> Welcome here😊</Heading>
+            <Heading style={{display:'flex'}} noOfLines={1} size="md">Hey, {localStorage.getItem("name")}! <img alt="heart image" width={"30px"} src={heartgif}/> Welcome here😊</Heading>
             <div style={{display:'grid'}}>            
             <TaskInput/>
             <TaskList/>
