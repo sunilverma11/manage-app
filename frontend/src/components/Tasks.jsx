@@ -5,7 +5,7 @@ import "../style/Task.css"
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { isAuthAction } from "../redux/action";
-
+import heartgif from "../utils/heartgif.gif"
 const Tasks = ()=>{
     const dispatch = useDispatch();
     useEffect(()=>{
@@ -13,7 +13,7 @@ const Tasks = ()=>{
     })
     return(
         <div className="task-container">
-            <Heading noOfLines={1} size="md">Hey, {localStorage.getItem("name")}! Welcome here😊</Heading>
+            <Heading style={{display:'flex'}} noOfLines={1} size="md">Hey, {localStorage.getItem("name")}! <img width={"30px"} src={heartgif}/> Welcome here😊</Heading>
             <div style={{display:'grid'}}>            
             <TaskInput/>
             <TaskList/>
