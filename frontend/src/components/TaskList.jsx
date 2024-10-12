@@ -99,7 +99,8 @@ const TaskList = (props)=>{
                 </Tbody>           
             </Table>
         </TableContainer>:<Text>No Data in table Please add</Text>}    
-    </>}        
+    </>
+    }        
     </div>
 }
 export default TaskList;

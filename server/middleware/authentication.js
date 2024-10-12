@@ -16,7 +16,7 @@ const generateToken = async (req, res, next)=>{
 const verifyToken = async (req, res, next)=>{
     
     const secretkey = process.env.secretkey;
-    //if secret key missing
+    //if secret key  missing
     if(!secretkey) return res.send("network error")
     const user_token = req.headers.authorization;
     // console.log("user_token",user_token)
