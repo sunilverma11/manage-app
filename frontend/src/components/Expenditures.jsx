@@ -103,7 +103,7 @@ const Expenditures = ()=>{
                 {expenditures.map((el)=>{
                     return(
                         <div key={el._id} style={{display:"flex", gap:'10px'}}>
-                            <h2 ><b>Ref: {el.reference}, Amount: {el.amount} </b></h2><button style={{backgroundColor:'red',color:'white', padding:'0 10px'}} onClick={()=>deleteExpenditure(el._id)}> Delete</button>
+                            <h2 ><b>Ref: {el.reference}, Amount: {el.amount} </b></h2><button style={{padding:'0 10px'}} onClick={()=>deleteExpenditure(el._id)}> Delete</button>
                         </div>
                     )
                 })}
