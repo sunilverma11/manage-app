@@ -71,7 +71,7 @@ const Expenditures = ()=>{
         setTotalExpend(sum)
     },[expenditures])
     return(
-        <div className="task-container">
+        <div className="expenditure-container">
             <Link to="../dashboard/tasks" style={{"alignContent":'end'}}>Go to manage tasks...</Link>
             <Heading style={{display:'flex'}} noOfLines={1} size="md">Hey, {localStorage.getItem("name")}! <img alt="heart" width={"30px"} src={heartgif}/> Welcome here😊</Heading>
             <div style={{display:'grid'}}> 
@@ -103,7 +103,7 @@ const Expenditures = ()=>{
                 {expenditures.map((el)=>{
                     return(
                         <div key={el._id} style={{display:"flex", gap:'10px'}}>
-                            <h2 ><b>Ref: {el.reference}, Amount: {el.amount} </b></h2><button onClick={()=>deleteExpenditure(el._id)}> Delete</button>
+                            <h2 ><b>Ref: {el.reference}, Amount: {el.amount} </b></h2><button style={{backgroundColor:'red',color:'white', padding:'0 10px'}} onClick={()=>deleteExpenditure(el._id)}> Delete</button>
                         </div>
                     )
                 })}
