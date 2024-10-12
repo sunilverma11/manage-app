@@ -21,7 +21,7 @@ router.post("/register",hashingPassword, async (req, res) => {
 });
 router.get("/users", async (req, res) => {
     try {
-      const item = await userModel.find();
+      const item = await userModel.aggregate( [ {$project: {name:1,_id:0}} ] );
       return res.status(201).send(item);
     } catch (error) {
       return res.status(404).send(error.message);
