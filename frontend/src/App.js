@@ -9,6 +9,8 @@ import ProtectedRoute from './ProtectedRoute';
 import Tasks from './components/Tasks';
 import Contact from './components/Contact';
 import About from './components/About';
+import Dashboard from './components/Dashboard';
+import Expenditures from './components/Expenditures';
 function App() {
   return (
     <ChakraProvider>
@@ -25,7 +27,9 @@ function App() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/contact/" element={<Contact/>}/>
           <Route path="/about/" element={<About/>}/>
-          <Route  path="/dashboard" element={<ProtectedRoute><Tasks/></ProtectedRoute>}/>
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
+          <Route path="/dashboard/tasks" element={<ProtectedRoute><Tasks/></ProtectedRoute>}/>
+          <Route path="/dashboard/expenditures" element={<ProtectedRoute><Expenditures/></ProtectedRoute>}/>
         </Routes>
       </div>
       </Router>

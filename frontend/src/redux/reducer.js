@@ -5,7 +5,10 @@ import {
     GET_TODO_SUCCESS,
     POST_TODO_SUCCESS,
     UPDATE_TODO_SUCCESS,
-    DELETE_TODO_SUCCESS
+    DELETE_TODO_SUCCESS,
+    GET_EXPENDITURE_SUCCESS,
+    POST_EXPENDITURE_SUCCESS,
+    DELETE_EXPENDITURE_SUCCESS
 } from "./actionType";
 
 
@@ -18,6 +21,13 @@ export const reducer =(state,{type, payload})=>{
             return {...state,isLoading:true};
         case TODO_FAILURE:
             return {...state, isLoading:false, isError:true}
+        case GET_EXPENDITURE_SUCCESS:
+            return {...state, isLoading:false, expenditures:payload};
+        case POST_EXPENDITURE_SUCCESS:
+            return {...state, isLoading:false, expenditures:[...state.expenditures,payload]};
+        case DELETE_EXPENDITURE_SUCCESS:
+            console.log("in delete ",payload)
+            return {...state, isLoading:false, expenditures: state.expenditures.filter((el)=>el._id!==payload._id)};
         case GET_TODO_SUCCESS:
             return {...state, isLoading:false, todos:payload};
         case POST_TODO_SUCCESS:

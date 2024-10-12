@@ -24,14 +24,14 @@ const Navbar = ()=>{
         <Stack style={{position:'fixed',display:'flex',flexDirection:'row',justifyContent:'space-between',
         width:'100%',color:'white',border:'1px solid gray',backgroundColor:'gray',
         padding:'10px 10px',textAlign:'center',zIndex:'1',alignItems:'center'}}>
-          <Text style={{fontWeight:'bolder', color:'lightgreen'}}>Manage App</Text>
+          <Link to="/dashboard"><Text style={{fontWeight:'bolder', color:'lightgreen'}}>Manage App</Text></Link>
           <Text style={{display:'flex', gap:'.45rem',fontWeight:'bold'}}>
-            <Link to="/about">About</Link>
-            <Link to="/contact">Contact</Link>
+          {statusTab?<Link to="/dashboard">Dashboard</Link>:null}
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link>
           {!statusTab?<><Link to="/login">Login</Link>
           <Link to="/register">Register</Link></>:
-          <><Link to="/dashboard">Dashboard</Link>
-          <Link onClick={handleLogout} to="/login">Logout</Link></>}
+          <><Link onClick={handleLogout} to="/login">Logout</Link></>}
           </Text>
         </Stack>
     )

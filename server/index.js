@@ -2,6 +2,7 @@
 const express = require("express");
 const taskController = require("./controllers/task.controller")
 const userController = require("./controllers/user.controller")
+const expenditureController = require("./controllers/expenditure.controller")
 const app = express()
 const cors = require('cors');
 const connectDB = require("./configs/db");
@@ -19,7 +20,7 @@ app.use(cors(corsOptions));
 // to read json file have to initialize
 app.use(express.json())
 
-app.use("", taskController,userController);
+app.use("", taskController, userController, expenditureController);
 app.get("/",(req,res)=>{
     return res.send("welcome on api server")
 })

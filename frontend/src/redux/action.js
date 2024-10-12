@@ -5,7 +5,10 @@ import {
     GET_TODO_SUCCESS,
     POST_TODO_SUCCESS,
     UPDATE_TODO_SUCCESS,
-    DELETE_TODO_SUCCESS
+    DELETE_TODO_SUCCESS,
+    GET_EXPENDITURE_SUCCESS,
+    POST_EXPENDITURE_SUCCESS,
+    DELETE_EXPENDITURE_SUCCESS
 } from "./actionType";
 
 export const isAuthAction =(payload)=>{
@@ -17,6 +20,18 @@ export const todoRequestAction =()=>{
 
 export const todoFailureAction =()=>{
     return{type:TODO_FAILURE}
+}
+
+export const getExpenditureSuccessAction =(payload)=>{
+    return{type:GET_EXPENDITURE_SUCCESS,payload}
+}
+
+export const postExpenditureSuccessAction =(payload)=>{
+    return{type:POST_EXPENDITURE_SUCCESS,payload}
+}
+
+export const deleteExpenditureSuccessAction =(payload)=>{
+    return{type:DELETE_EXPENDITURE_SUCCESS,payload}
 }
 
 export const getTodoSuccessAction =(payload)=>{
