@@ -67,7 +67,6 @@ const Expenditures = ()=>{
     useEffect(()=>{
         let sum = 0;
         for(let i=0; i<expenditures.length; i++) sum= sum+ Number(expenditures[i].amount)
-        console.log("acccu",expenditures)
         setTotalExpend(sum)
     },[expenditures])
     return(
